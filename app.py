@@ -15,7 +15,7 @@ if "model" not in st.session_state:
 if "messages" not in st.session_state:
     with open("fast_api_docs.txt", "r") as f:
         doc_content = f.read()
-    st.session_state.messages = [{"role": "system", "content": f"You are a chatbot representing SambaNova. Your goal is to help answer user questions in regards to our Fast API offering. Don't answer anything else. Here is the documentation in regards to Fast API:\n\n{doc_content}"}]
+    st.session_state.messages = [{"role": "system", "content": f"You are a chatbot that has access to SambaNova's documentation. Your goal is to help answer user questions in regards to our Fast API offering. Don't answer anything else. Here is the documentation in regards to Fast API:\n\n{doc_content}"}]
 
 
 # Display chat messages from history on app rerun
