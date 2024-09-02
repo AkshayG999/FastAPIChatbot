@@ -1,0 +1,62 @@
+# Quick Start Guide
+
+To quickly get started using the SambaNova Fast API, you will need:
+
+**Your API Key**: [Example: xX2peXxxXxXxanE5aHFrN2Yml0cm1uaXk1NDV6 ]
+**Your URL endpoint**: [Example: https://fast-api.snova.ai/v1/chat/completions]
+
+### Supported models
+
+The Fast API supports the latest Llama 3.1 models running at the fastest tokens per second with following specs (this list may be updated as more models are supported):
+
+|Model|Context Length|Output Length|Dtype|
+| --- | --- | --- | --- |
+|Meta-Llama-3.1-8B-Instruct|8192| 1000 |BF16|
+|Meta-Llama-3.1-70B-Instruct|8192| 1000 |BF16|
+|Meta-Llama-3.1-405B-Instruct|4096| 1000 |BF16|
+
+
+### CURL Command
+
+In a terminal, run this CURL command to make your first request to the API. 
+
+
+```
+export API_KEY=<API_KEY>
+export URL=<URL>
+
+curl -H "Authorization: Bearer $API_KEY" \
+-H "Content-Type: application/json" \
+-d '{
+"messages": [
+{"role": "system", "content": "You are a helpful assistant"},
+{"role": "user", "content": "Hello"}
+],
+"stop": ["<|eot_id|>"],
+"model": "Meta-Llama-3.1-405B-Instruct",
+"stream": true, "stream_options": {"include_usage": true}
+}' \
+-X POST $URL
+```
+
+The API currently only supports streaming and the models listed above. If you run into issues, please contact the SambaNova team. 
+
+### OpenAI Compatibility
+
+Our API is OpenAI Compatible and works with most common OpenAI libraries using our URL and API Key. Please refer to this [**document**](https://community.sambanova.ai/t/openai-python-quick-start-guide/182) if you would like sample code for running in Python. 
+
+### Beta: Custom Checkpoint Support
+
+We're excited to offer beta access to custom checkpoint support for select users. If your custom checkpoint falls into categories defined in the Supported Models section, you can connect with our team to try out our fast speeds on your checkpoint of Llama 3.1 8B or 70B through FastAPI. To get started, please have your own checkpoint through Hugging Face (HF) with the required safetensors and configs (see example: Meta-Llama-3.1-8B-Instruct 12).
+
+Please note that this is an early access feature, and we're still refining the process. Your feedback will help us shape the final product. If you're interested in trying out custom checkpoint support, reach out to the SambaNova team to get started.
+
+### Rate Limits
+
+If you need higher rate limits, please reach out to help@sambanova.ai and a team member will discuss options with you. 
+
+### Next Steps
+
+SambaNova AI Starter Kits are a collection of open-source examples and guides to facilitate the deployment of AI-driven use cases in the enterprise. The Enterprise Knowledge Retriever Kit allows you to quickly build a semantic search RAG application with Langchain and Streamlit in Python.
+
+To build a complete [Enterprise knowledge retriever app, click on this AI Starter Kit](https://github.com/sambanova/ai-starter-kit/tree/main/enterprise_knowledge_retriever)
